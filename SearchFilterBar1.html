@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fruit Search Filter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 50%;
+            margin: 100px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        #searchBar {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        #fruitList {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        #fruitList li {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Fruit Search Filter</h1>
+        <input type="text" id="searchBar" placeholder="Search for a fruit...">
+        <ul id="fruitList"></ul>
+    </div>
+
+    <script>
+        const fruits = ["Apple", "Banana", "Cherry", "Date", "Elderberry", "Fig", "Grapes", "Honeydew", "Kiwi", "Lemon", "Mango", "Nectarine", "Orange", "Papaya", "Quince", "Raspberry", "Strawberry", "Tomato", "Ugli fruit", "Vanilla", "Watermelon", "Xigua", "Yellow Passion Fruit", "Zucchini"];
+
+        const searchBar = document.getElementById('searchBar');
+        const fruitList = document.getElementById('fruitList');
+
+        // Function to display the list of fruits
+        function displayFruits(filteredFruits) {
+            fruitList.innerHTML = '';
+            filteredFruits.forEach(fruit => {
+                const li = document.createElement('li');
+                li.textContent = fruit;
+                fruitList.appendChild(li);
+            });
+        }
+
+        // Display all fruits initially
+        displayFruits(fruits);
+
+        // Event listener for the search bar
+        searchBar.addEventListener('input', function() {
+            const searchQuery = searchBar.value.toLowerCase();
+            const filteredFruits = fruits.filter(fruit => fruit.toLowerCase().includes(searchQuery));
+            displayFruits(filteredFruits);
+        });
+    </script>
+</body>
+</html>
